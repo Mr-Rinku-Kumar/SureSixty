@@ -1,420 +1,565 @@
-/* Variables for consistent theming */
-:root {
-  --primary-color: #4361ee;
-  --primary-dark: #3a56d4;
-  --success-color: #10b981;
-  --danger-color: #ef4444;
-  --warning-color: #f59e0b;
-  --text-primary: #1f2937;
-  --text-secondary: #6b7280;
-  --border-color: #e5e7eb;
-  --bg-light: #f9fafb;
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  --radius-md: 8px;
-  --radius-lg: 12px;
-}
-
-.due-reports-container {
-  background: var(--bg-light);
+/* Main Container */
+.DueReports-container {
+  padding: 24px;
   min-height: 100vh;
 }
 
 /* Page Header */
-.page-header {
+.DueReports-page-header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  margin-bottom: 24px;
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+
+.DueReports-page-header h1 {
+  font-size: 32px;
+  font-weight: 800;
   color: white;
-  padding: 30px 40px;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.page-header h1 {
-  margin: 0;
-  font-size: 28px;
-  font-weight: 600;
-}
-
-.page-header p {
-  margin: 8px 0 0;
-  opacity: 0.9;
+.DueReports-page-header p {
+  color: rgba(255, 255, 255, 0.9);
   font-size: 14px;
 }
 
-/* Grid Layout */
-.due-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  padding: 24px 40px;
-}
-
-/* Card */
-.report-card {
-  background: white;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.report-card:hover {
-  box-shadow: var(--shadow-lg);
-}
-
-/* Header */
-.report-header {
+/* Error Alert */
+.DueReports-error-alert {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  border-left: 4px solid #ef4444;
+  color: #991b1b;
+  padding: 12px 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 24px;
-  border-bottom: 2px solid var(--border-color);
-  background: white;
+  animation: DueReports-slideInRight 0.3s ease;
 }
 
-.header-left h3 {
-  margin: 0;
-  color: var(--text-primary);
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.subtitle {
-  font-size: 12px;
-  color: var(--text-secondary);
-  margin-top: 4px;
-  display: block;
-}
-
-.header-stats .stat-badge {
-  background: var(--bg-light);
-  padding: 8px 16px;
-  border-radius: var(--radius-md);
+.DueReports-close-alert {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #991b1b;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
   display: flex;
-  gap: 8px;
-  align-items: baseline;
+  align-items: center;
+  justify-content: center;
 }
 
-.stat-label {
-  font-size: 13px;
-  color: var(--text-secondary);
-  font-weight: 500;
+.DueReports-close-alert:hover {
+  background: rgba(0, 0, 0, 0.1);
 }
 
-.stat-value {
-  font-size: 18px;
+/* Main Card */
+.DueReports-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Header */
+.DueReports-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 28px;
+  background: linear-gradient(135deg, #f9fafb, #f3f4f6);
+  border-bottom: 2px solid #e5e7eb;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.DueReports-header-left h3 {
+  font-size: 20px;
   font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 4px;
 }
 
-.stat-value.positive {
-  color: var(--success-color);
+.DueReports-subtitle {
+  font-size: 12px;
+  color: #6b7280;
 }
 
-.stat-value.negative {
-  color: var(--danger-color);
+.DueReports-header-stats {
+  display: flex;
+  gap: 12px;
+}
+
+.DueReports-stat-badge {
+  background: white;
+  padding: 10px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.DueReports-stat-label {
+  font-size: 12px;
+  color: #6b7280;
+  margin-right: 8px;
+}
+
+.DueReports-stat-value {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.DueReports-stat-value.positive {
+  color: #dc2626;
+}
+
+.DueReports-stat-value.negative {
+  color: #10b981;
 }
 
 /* Filters */
-.filters {
-  padding: 20px 24px;
-  background: var(--bg-light);
-  border-bottom: 1px solid var(--border-color);
+.DueReports-filters {
+  padding: 20px 28px;
+  background: white;
   display: flex;
-  flex-wrap: wrap;
   gap: 16px;
-  align-items: flex-end;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #e5e7eb;
 }
 
-.filter-group {
+.DueReports-filter-group {
   flex: 1;
   min-width: 150px;
 }
 
-.filter-group label {
+.DueReports-filter-group label {
   display: block;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text-secondary);
   margin-bottom: 6px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
 }
 
-.filter-group select,
-.filter-group input {
+.DueReports-filter-input,
+.DueReports-filter-select,
+.DueReports-search-input {
   width: 100%;
-  padding: 8px 12px;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  font-size: 14px;
-  transition: all 0.2s;
-  background: white;
+  padding: 10px 12px;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 13px;
+  transition: all 0.3s ease;
 }
 
-.filter-group select:focus,
-.filter-group input:focus {
+.DueReports-filter-input:focus,
+.DueReports-filter-select:focus,
+.DueReports-search-input:focus {
   outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-.search-input {
-  padding-left: 32px !important;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'%3E%3C/path%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: 8px center;
-  background-size: 16px;
-}
-
-.filter-actions {
+.DueReports-filter-actions {
   display: flex;
-  gap: 12px;
-  align-items: center;
+  gap: 10px;
+  align-items: flex-end;
 }
 
-.search-btn,
-.excel-btn {
-  display: inline-flex;
+.DueReports-search-btn,
+.DueReports-clear-btn,
+.DueReports-excel-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 16px;
-  border: none;
-  border-radius: var(--radius-md);
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
 }
 
-.search-btn {
-  background: var(--primary-color);
+.DueReports-search-btn {
+  background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
 }
 
-.search-btn:hover {
-  background: var(--primary-dark);
-  transform: translateY(-1px);
+.DueReports-search-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
 }
 
-.excel-btn {
-  background: var(--success-color);
+.DueReports-clear-btn {
+  background: linear-gradient(135deg, #6b7280, #4b5563);
   color: white;
-  padding: 8px 20px;
-  border-radius: var(--radius-md);
 }
 
-.excel-btn:hover {
-  background: #059669;
-  transform: translateY(-1px);
+.DueReports-clear-btn:hover {
+  transform: translateY(-2px);
 }
 
-/* Table */
-.table-container {
-  overflow-x: auto;
-  max-height: 400px;
-  overflow-y: auto;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-}
-
-thead {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+.DueReports-excel-btn {
+  background: linear-gradient(135deg, #10b981, #059669);
   color: white;
-  position: sticky;
-  top: 0;
-  z-index: 10;
 }
 
-thead th {
-  padding: 12px 12px;
-  font-weight: 600;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  border: none;
+.DueReports-excel-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
 }
 
-tbody tr {
-  transition: background 0.2s;
-}
-
-tbody tr:hover {
-  background: #f3f4f6;
-}
-
-tbody td {
-  padding: 12px;
-  border-bottom: 1px solid var(--border-color);
-  color: var(--text-primary);
-}
-
-.student-name {
-  font-weight: 600;
-  color: var(--primary-color);
-}
-
-.sl-no {
-  color: var(--text-secondary);
-  font-weight: 500;
-  width: 50px;
-}
-
-.amount {
-  font-weight: 700;
-  position: relative;
-}
-
-.amount.positive {
-  color: var(--success-color);
-}
-
-.amount.negative {
-  color: var(--danger-color);
-}
-
-.currency {
-  font-size: 11px;
-  opacity: 0.7;
-}
-
-.badge {
-  display: inline-block;
-  margin-left: 6px;
-  padding: 2px 6px;
-  background: rgba(239, 68, 68, 0.1);
-  color: var(--danger-color);
-  border-radius: 12px;
-  font-size: 10px;
-  font-weight: 500;
-}
-
-.date-cell {
-  font-family: monospace;
-  font-size: 12px;
-}
-
-/* Empty State */
-.no-data {
-  text-align: center;
-  padding: 60px 20px !important;
-}
-
-.empty-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  color: var(--text-secondary);
-}
-
-.empty-state svg {
-  color: var(--border-color);
-}
-
-.empty-state p {
-  margin: 0;
-  font-size: 14px;
-}
-
-/* Table Footer */
-.table-footer {
-  padding: 16px 24px;
-  border-top: 1px solid var(--border-color);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: white;
-}
-
-.pagination {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
-.page-btn {
-  padding: 6px 12px;
-  border: 1px solid var(--border-color);
-  background: white;
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.page-btn:hover:not(:disabled) {
-  background: var(--bg-light);
-  border-color: var(--primary-color);
-}
-
-.page-btn:disabled {
-  opacity: 0.5;
+.DueReports-excel-btn:disabled {
+  opacity: 0.6;
   cursor: not-allowed;
 }
 
-.page-info {
-  font-size: 13px;
-  color: var(--text-secondary);
+/* Table Container */
+.DueReports-table-container {
+  padding: 0;
 }
 
-.records-info {
-  font-size: 13px;
-  color: var(--text-secondary);
+.DueReports-table-responsive {
+  overflow-x: auto;
 }
 
-/* Responsive */
+.DueReports-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.DueReports-table thead {
+  background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+}
+
+.DueReports-table th {
+  padding: 14px 12px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 700;
+  color: #374151;
+  border-bottom: 2px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+.DueReports-table td {
+  padding: 14px 12px;
+  font-size: 13px;
+  color: #4b5563;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.DueReports-table tbody tr {
+  transition: all 0.2s ease;
+}
+
+.DueReports-table tbody tr:hover {
+  background: linear-gradient(135deg, #f9fafb, #ffffff);
+  transform: scale(1.01);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Cell Styles */
+.DueReports-sl-no {
+  font-weight: 700;
+  color: #667eea;
+  width: 60px;
+}
+
+.DueReports-student-name {
+  min-width: 150px;
+}
+
+.DueReports-name-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.DueReports-icon {
+  font-size: 24px;
+}
+
+.DueReports-student-id code {
+  background: #f3f4f6;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-family: monospace;
+}
+
+/* Amount Styles */
+.DueReports-amount {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.DueReports-amount.positive {
+  color: #dc2626;
+}
+
+.DueReports-amount.negative {
+  color: #10b981;
+}
+
+.DueReports-currency {
+  font-size: 11px;
+  margin-right: 2px;
+}
+
+.DueReports-badge {
+  display: inline-block;
+  background: #10b981;
+  color: white;
+  font-size: 9px;
+  padding: 2px 6px;
+  border-radius: 20px;
+  margin-left: 8px;
+  font-weight: 600;
+}
+
+/* Date Cell */
+.DueReports-date-cell {
+  font-family: monospace;
+  white-space: nowrap;
+}
+
+/* Course Fee */
+.DueReports-course-fee {
+  font-weight: 500;
+  color: #059669;
+}
+
+/* Fees Badge */
+.DueReports-fees-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+  color: #4338ca;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Loading State */
+.DueReports-loading-state {
+  text-align: center;
+  padding: 60px;
+}
+
+.DueReports-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #e5e7eb;
+  border-top-color: #667eea;
+  border-right-color: #764ba2;
+  border-radius: 50%;
+  animation: DueReports-spin 0.8s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes DueReports-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Empty State */
+.DueReports-empty-state {
+  text-align: center;
+  padding: 60px;
+  color: #9ca3af;
+}
+
+.DueReports-empty-state svg {
+  margin-bottom: 16px;
+  color: #d1d5db;
+}
+
+.DueReports-empty-hint {
+  font-size: 12px;
+  margin-top: 8px;
+  color: #cbd5e1;
+}
+
+/* Table Footer */
+.DueReports-table-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #f9fafb, #f3f4f6);
+  border-top: 2px solid #e5e7eb;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Pagination */
+.DueReports-pagination {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.DueReports-page-btn {
+  background: white;
+  border: 2px solid #e5e7eb;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.DueReports-page-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border-color: transparent;
+}
+
+.DueReports-page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.DueReports-page-numbers {
+  display: flex;
+  gap: 6px;
+}
+
+.DueReports-page-number {
+  background: white;
+  border: 2px solid #e5e7eb;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.DueReports-page-number:hover:not(.DueReports-active-page) {
+  background: #f3f4f6;
+}
+
+.DueReports-page-number.DueReports-active-page {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border-color: transparent;
+}
+
+.DueReports-records-info {
+  font-size: 12px;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.DueReports-active-filter {
+  background: #e0e7ff;
+  padding: 4px 10px;
+  border-radius: 20px;
+  color: #4338ca;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Animations */
+@keyframes DueReports-slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
 @media (max-width: 1024px) {
-  .due-wrapper {
-    grid-template-columns: 1fr;
-    padding: 20px;
+  .DueReports-container {
+    padding: 16px;
   }
 
-  .page-header {
-    padding: 20px;
+  .DueReports-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .DueReports-filters {
+    flex-direction: column;
+  }
+
+  .DueReports-filter-group {
+    width: 100%;
+  }
+
+  .DueReports-filter-actions {
+    flex-direction: column;
+  }
+
+  .DueReports-filter-actions button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .DueReports-table-footer {
+    flex-direction: column;
+  }
+
+  .DueReports-pagination {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 
 @media (max-width: 768px) {
-  .filters {
-    flex-direction: column;
+  .DueReports-page-header h1 {
+    font-size: 24px;
   }
 
-  .filter-group {
-    width: 100%;
-  }
-
-  .filter-actions {
-    width: 100%;
-  }
-
-  .search-btn,
-  .excel-btn {
-    flex: 1;
-    justify-content: center;
-  }
-
-  .report-header {
-    flex-direction: column;
-    gap: 12px;
-    align-items: flex-start;
-  }
-
-  .table-footer {
-    flex-direction: column;
-    gap: 12px;
-    align-items: flex-start;
-  }
-
-  thead th {
+  .DueReports-table th,
+  .DueReports-table td {
+    padding: 10px 8px;
     font-size: 11px;
-    padding: 8px;
   }
 
-  tbody td {
-    padding: 8px;
-    font-size: 12px;
+  .DueReports-stat-value {
+    font-size: 16px;
+  }
+
+  .DueReports-name-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .DueReports-icon {
+    font-size: 20px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .DueReports-container {
+    background: white;
+    padding: 0;
+  }
+
+  .DueReports-filter-actions,
+  .DueReports-pagination,
+  .DueReports-excel-btn,
+  .DueReports-search-btn,
+  .DueReports-clear-btn {
+    display: none;
+  }
+
+  .DueReports-card {
+    box-shadow: none;
   }
 }

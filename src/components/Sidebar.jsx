@@ -1,159 +1,153 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import "../styles/sidebar.css";
+import { 
+  FaHome, 
+  FaCog, 
+  FaBuilding, 
+  FaUserGraduate, 
+  FaMoneyBillWave, 
+  FaChartLine, 
+  FaWallet, 
+  FaBook, 
+  FaClipboardList, 
+  FaFileAlt, 
+  FaSignOutAlt,
+  FaChevronLeft,
+  FaChevronRight,
+  FaBars,
+  FaUniversity,
+  FaChalkboardTeacher,
+  FaBed,
+  FaClock,
+  FaCreditCard,
+  FaPercent,
+  FaHandHoldingUsd,
+  FaBoxes,
+  FaTag,
+  FaShoppingCart,
+  FaRegBuilding,
+  FaRegCalendarAlt,
+  FaRegMoneyBillAlt,
+  FaRegChartBar,
+  FaTachometerAlt,
+  FaUsers,
+  FaRegClipboard,
+  FaRegFileAlt,
+  FaRegBookmark,
+  FaRegAddressCard,
+  FaRegCalendarCheck,
+  FaRegCreditCard,
+  FaChartPie,
+  FaRegHandshake
+} from "react-icons/fa";
+import { MdDashboard, MdLogout, MdSettings, MdSchool, MdLibraryBooks, MdAirlineSeatReclineNormal  } from "react-icons/md";
+import { GiExpense, GiTakeMyMoney, GiTakeMyMoney as GiFees } from "react-icons/gi";
+import { BiGitBranch, BiMoney, BiBarChart, BiBookOpen, BiBriefcase, BiCalendar } from "react-icons/bi";
+import { IoSchoolOutline, IoPeopleOutline, IoStatsChart } from "react-icons/io5";
 import { logout as apiLogout } from "../utils/api";
+import "../styles/sidebar.css";
 
 const menuItems = [
   {
     title: "Home",
-    icon: "🏠",
+    icon: <FaHome />,
     submenu: [
-      { title: "Dashboard", path: "/dashboard" },
-      { title: "Due Reports", path: "/due-reports" },
-      { title: "Change Password", path: "/change-password" },
-      { title: "Transaction Password", path: "/transaction-password" },
-      { title: "Logout", path: "/logout", isLogout: true }
+      { title: "Dashboard", path: "/dashboard", icon: <MdDashboard /> },
+      { title: "Due Reports", path: "/due-reports", icon: <FaRegMoneyBillAlt /> },
+      { title: "Change Password", path: "/change-password", icon: <FaRegBookmark /> },
+      { title: "Transaction Password", path: "/transaction-password", icon: <FaRegCreditCard /> },
+      { title: "Logout", path: "/logout", isLogout: true, icon: <MdLogout /> }
     ]
   },
   {
     title: "Settings",
-    icon: "⚙️",
+    icon: <FaCog />,
     submenu: [
-      { title: "Mentor Management", path: "/mentormamagement" },
-      { title: "Batch Management", path: "/batchmanagement" },
-      { title: "Course Management", path: "/coursemanagement" },
-      { title: "Room Management", path: "/roommanagement" },
-      { title: "Bed Management", path: "/bedmanagement" },
-      { title: "Duration Management", path: "/durationmanagement" },
-      { title: "Payment Management", path: "/paymentmanagement" },
+      { title: "Mentor Management", path: "/mentormamagement", icon: <FaChalkboardTeacher /> },
+      { title: "Batch Management", path: "/batchmanagement", icon: <FaUsers /> },
+      { title: "Course Management", path: "/coursemanagement", icon: <MdSchool /> },
+      { title: "Room Management", path: "/roommanagement", icon: <FaRegBuilding /> },
+      { title: "Bed Management", path: "/bedmanagement", icon: <FaBed /> },
+      { title: "Duration Management", path: "/durationmanagement", icon: <FaClock /> },
+      { title: "Payment Management", path: "/paymentmanagement", icon: <FaCreditCard /> },
     ]
   },
   {
     title: "Branch",
-    icon: "🏢",
+    icon: <FaBuilding />,
     submenu: [
-      { title: "View Branch", path: "/branch/view" }
+      { title: "View Branch", path: "/branch/view", icon: <BiGitBranch /> }
     ]
   },
   {
     title: "Student",
-    icon: "👨‍🎓",
+    icon: <FaUserGraduate />,
     submenu: [
-      { title: "Student Management", path: "/studentmanagement" }
+      { title: "Student Management", path: "/studentmanagement", icon: <IoPeopleOutline /> }
     ]
   },
-  // {
-  //   title: "Student Discount",
-  //   icon: "💰",
-  //   submenu: [
-  //     { title: "New Discount", path: "/discount/add" },
-  //     { title: "View Discount", path: "/discount/view" }
-  //   ]
-  // },
   {
     title: "Fees Collection",
-    icon: "💵",
+    icon: <FaMoneyBillWave />,
     submenu: [
-      { title: "Fee Management", path: "/feemanagement" }
+      { title: "Fee Management", path: "/feemanagement", icon: <GiFees /> }
     ]
   },
   {
     title: "Invest",
-    icon: "📈",
+    icon: <FaChartLine />,
     submenu: [
-      { title: "Invest Management", path: "/investmanagement" },
+      { title: "Invest Management", path: "/investmanagement", icon: <FaHandHoldingUsd /> }
     ]
   },
   {
     title: "Expense Head",
-    icon: "📊",
+    icon: <FaWallet />,
     submenu: [
-      { title: "Expense Head", path: "/expenseheadmanagement" },
-      { title: "Expense Type", path: "/expensetype" }
+      { title: "Expense Head", path: "/expenseheadmanagement", icon: <FaTag /> },
+      { title: "Expense Type", path: "/expensetype", icon: <FaBoxes /> }
     ]
   },
   {
     title: "Expense",
-    icon: "💸",
+    icon: <GiExpense />,
     submenu: [
-      { title: " View Expense", path: "/viewexpense" },
-
+      { title: "View Expense", path: "/viewexpense", icon: <FaRegClipboard /> }
     ]
   },
   {
     title: "Library",
-    icon: "📚",
+    icon: <FaBook />,
     submenu: [
-      { title: "Library Management", path: "/librarymanagement" },
-      { title: "Seat Management", path: "/seatmanagement" },
+      { title: "Library Management", path: "/librarymanagement", icon: <MdLibraryBooks /> },
+      { title: "Seat Management", path: "/seatmanagement", icon: <MdAirlineSeatReclineNormal  /> }
     ]
   },
-  // {
-  //   title: "Staff",
-  //   icon: "👔",
-  //   submenu: [
-  //     { title: "New Staff", path: "/staff/add" },
-  //     { title: "View Teaching Staff", path: "/staff/teaching" },
-  //     { title: "View Non-Teaching Staff", path: "/staff/non-teaching" }
-  //   ]
-  // },
-  // {
-  //   title: "Staff Salary",
-  //   icon: "💰",
-  //   submenu: [
-  //     { title: "New Staff Salary", path: "/staff-salary/add" },
-  //     { title: "View Staff Salary", path: "/staff-salary/view" }
-  //   ]
-  // },
   {
     title: "Result",
-    icon: "📊",
+    icon: <IoStatsChart />,
     submenu: [
-      { title: "Result Management", path: "/resultmanagement" },
-      // { title: "View Offline Result", path: "/result/offline" },
-      // { title: "View Online Result", path: "/result/online" },
-      // { title: "Delete Offline Result", path: "/result/offline/delete" },
-      // { title: "Delete Online Result", path: "/result/online/delete" },
-      // { title: "View Offline Toppers", path: "/result/toppers/offline" },
-      // { title: "View Online Toppers", path: "/result/toppers/online" }
+      { title: "Result Management", path: "/resultmanagement", icon: <BiBarChart /> }
     ]
   },
-  // {
-  //   title: "Attendance",
-  //   icon: "📝",
-  //   submenu: [
-  //     { title: "Add Attendance", path: "/attendance/add" },
-  //     { title: "View Attendance", path: "/attendance/view" }
-  //   ]
-  // },
   {
     title: "Balance Sheet",
-    icon: "📋",
+    icon: <FaClipboardList />,
     submenu: [
-      { title: "Balance Sheet", path: "/balance-sheet" }
+      { title: "Balance Sheet", path: "/balance-sheet", icon: <FaRegChartBar /> }
     ]
   },
   {
     title: "Report",
-    icon: "📄",
+    icon: <FaFileAlt />,
     submenu: [
-      { title: "Fees Collection", path: "/report/fees" },
-      { title: "Expenses", path: "/report/expenses" },
-      { title: "Room Report", path: "/roomreport" },
-      { title: "Library", path: "/report/library" },
-      { title: "Mentor", path: "/report/mentor" }
+      // { title: "Fees Collection", path: "/report/fees", icon: <FaRegMoneyBillAlt /> },
+      // { title: "Expenses", path: "/report/expenses", icon: <GiExpense /> },
+      { title: "Room Report", path: "/roomreport", icon: <FaRegBuilding /> },
+      { title: "Library", path: "/report/library", icon: <MdLibraryBooks /> },
+      { title: "Mentor", path: "/report/mentor", icon: <FaChalkboardTeacher /> }
     ]
-  },
-  // {
-  //   title: "Subadmin",
-  //   icon: "👥",
-  //   submenu: [
-  //     { title: "Add Subadmin", path: "/subadmin/add" },
-  //     { title: "View Subadmin", path: "/subadmin/view" },
-  //     { title: "New Permission", path: "/permission/add" },
-  //     { title: "View Permission", path: "/permission/view" }
-  //   ]
-  // }
+  }
 ];
 
 const Sidebar = ({ onNavigate, currentPath }) => {
@@ -185,7 +179,18 @@ const Sidebar = ({ onNavigate, currentPath }) => {
     if (savedOpenIndex !== null) {
       setOpenIndex(parseInt(savedOpenIndex));
     }
+    const savedCollapsed = localStorage.getItem("sidebarCollapsed");
+    if (savedCollapsed !== null && window.innerWidth > 768) {
+      setCollapsed(JSON.parse(savedCollapsed));
+    }
   }, []);
+
+  // Save collapsed state
+  useEffect(() => {
+    if (window.innerWidth > 768) {
+      localStorage.setItem("sidebarCollapsed", JSON.stringify(collapsed));
+    }
+  }, [collapsed]);
 
   const toggleDropdown = useCallback((index) => {
     const newOpenIndex = openIndex === index ? null : index;
@@ -230,6 +235,11 @@ const Sidebar = ({ onNavigate, currentPath }) => {
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [mobileOpen]);
 
+  // Check if a submenu item is active
+  const isSubmenuActive = (submenu) => {
+    return submenu.some(sub => location.pathname === sub.path);
+  };
+
   return (
     <>
       {/* Mobile Overlay */}
@@ -243,7 +253,7 @@ const Sidebar = ({ onNavigate, currentPath }) => {
         onClick={toggleSidebar}
         aria-label="Toggle menu"
       >
-        ☰
+        <FaBars />
       </button>
 
       <aside
@@ -255,13 +265,20 @@ const Sidebar = ({ onNavigate, currentPath }) => {
           onClick={toggleSidebar}
           aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
         >
-          {collapsed && window.innerWidth > 768 ? "☰" : "◀"}
+          {collapsed && window.innerWidth > 768 ? <FaBars /> : <FaChevronLeft />}
         </button>
 
         <div className="sidebar-logo">
-          {!collapsed && <span className="logo-text">
-            <img src="https://gurukulsure60.com/sure60fees/images/logo.png" alt="sure60" />
-          </span>}
+          {!collapsed ? (
+            <>
+              <img src="https://gurukulsure60.com/sure60fees/images/logo.png" alt="sure60" />
+              <span className="logo-text">Sure60 IMS</span>
+            </>
+          ) : (
+            <div className="logo-icon">
+              <img src="https://gurukulsure60.com/sure60fees/images/logo.png" alt="sure60" style={{ width: '40px' }} />
+            </div>
+          )}
         </div>
 
         <nav className="sidebar-nav">
@@ -269,24 +286,24 @@ const Sidebar = ({ onNavigate, currentPath }) => {
             {menuItems.map((item, index) => (
               <li key={index} className="sidebar-item">
                 <button
-                  className={`menu-item ${openIndex === index ? "active-parent" : ""}`}
+                  className={`menu-item ${openIndex === index ? "active-parent" : ""} ${isSubmenuActive(item.submenu) ? "has-active-child" : ""}`}
                   onClick={() => toggleDropdown(index)}
                   aria-expanded={openIndex === index}
                 >
-                  <span className="menu-icon" aria-hidden="true">{item.icon}</span>
+                  <span className="menu-icon">{item.icon}</span>
                   {!collapsed && (
                     <>
                       <span className="menu-title">{item.title}</span>
                       {item.submenu && (
                         <span className="dropdown-arrow">
-                          {openIndex === index ? "▲" : "▼"}
+                          {openIndex === index ? <FaChevronRight className="rotate" /> : <FaChevronRight />}
                         </span>
                       )}
                     </>
                   )}
                 </button>
 
-                {openIndex === index && item.submenu && (
+                {openIndex === index && item.submenu && !collapsed && (
                   <ul className="submenu">
                     {item.submenu.map((sub, i) => (
                       <li
@@ -294,8 +311,8 @@ const Sidebar = ({ onNavigate, currentPath }) => {
                         className={`submenu-item ${location.pathname === sub.path ? "active" : ""}`}
                         onClick={() => handleNavigation(sub.path, sub.isLogout)}
                       >
-                        <span className="submenu-icon" aria-hidden="true">→</span>
-                        {sub.title}
+                        <span className="submenu-icon">{sub.icon}</span>
+                        <span className="submenu-title">{sub.title}</span>
                       </li>
                     ))}
                   </ul>
@@ -304,6 +321,15 @@ const Sidebar = ({ onNavigate, currentPath }) => {
             ))}
           </ul>
         </nav>
+
+        {/* Footer Section */}
+        {!collapsed && (
+          <div className="sidebar-footer">
+            <div className="sidebar-footer-content">
+              <span className="footer-copyright">© 2024 Sure60 IMS</span>
+            </div>
+          </div>
+        )}
       </aside>
     </>
   );
