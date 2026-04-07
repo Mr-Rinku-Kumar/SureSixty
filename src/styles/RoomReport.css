@@ -1,0 +1,429 @@
+/* Room Report Styles */
+.roomreport-container {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+.roomreport-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.roomreport-header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.roomreport-header h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin: 0 0 8px 0;
+}
+
+.roomreport-header p {
+  color: #666;
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Filters */
+.roomreport-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.roomreport-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.roomreport-filter-group label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.roomreport-input {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.2s;
+  background: white;
+}
+
+.roomreport-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Alert Message */
+.roomreport-alert {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.roomreport-alert.error {
+  background-color: #fee2e2;
+  color: #dc2626;
+  border-left: 4px solid #dc2626;
+}
+
+.roomreport-alert.success {
+  background-color: #dcfce7;
+  color: #16a34a;
+  border-left: 4px solid #16a34a;
+}
+
+.roomreport-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: inherit;
+  padding: 0 4px;
+}
+
+/* Loading State */
+.roomreport-loading {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.roomreport-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Empty State */
+.roomreport-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6b7280;
+}
+
+.roomreport-empty svg {
+  margin-bottom: 16px;
+  color: #9ca3af;
+}
+
+.roomreport-empty p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+/* Stats Cards */
+.roomreport-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.roomreport-stat-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 16px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+}
+
+.roomreport-stat-label {
+  display: block;
+  font-size: 13px;
+  opacity: 0.9;
+  margin-bottom: 8px;
+}
+
+.roomreport-stat-value {
+  display: block;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* Room Card */
+.roomreport-room-card {
+  background: #f9fafb;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+}
+
+.roomreport-room-header {
+  background: white;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.roomreport-room-info h3 {
+  margin: 0 0 4px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.roomreport-branch-badge {
+  font-size: 12px;
+  padding: 4px 8px;
+  background: #e0e7ff;
+  color: #4338ca;
+  border-radius: 6px;
+}
+
+.roomreport-room-stats {
+  display: flex;
+  gap: 12px;
+}
+
+.roomreport-beds-count {
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.roomreport-beds-count.available {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.roomreport-beds-count.full {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* Beds Table */
+.roomreport-beds-grid {
+  padding: 0;
+  overflow-x: auto;
+}
+
+.roomreport-beds-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.roomreport-beds-table thead {
+  background: #f3f4f6;
+}
+
+.roomreport-beds-table th {
+  padding: 12px 16px;
+  text-align: center !important;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.roomreport-beds-table td {
+  padding: 12px 16px;
+  font-size: 14px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.roomreport-beds-table tr:hover {
+  background: #fefce8;
+}
+
+.roomreport-beds-table .available-row {
+  background: #fefce8;
+}
+
+.roomreport-beds-table .occupied-row {
+  background: white;
+}
+
+.roomreport-bed-number {
+  font-weight: 600;
+  color: #4b5563;
+}
+
+/* Status Badges */
+.roomreport-status {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.roomreport-status.available {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.roomreport-status.occupied {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* Student Info */
+.roomreport-student-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.roomreport-student-info strong {
+  font-size: 14px;
+  color: #1f2937;
+}
+
+.roomreport-student-info small {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.roomreport-student-name {
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.roomreport-student-id {
+  font-size: 12px;
+  padding: 2px 6px;
+  background: #f3f4f6;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.roomreport-empty-text {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+/* Pagination */
+.roomreport-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 16px 0;
+}
+
+.roomreport-page-btn {
+  padding: 8px 16px;
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.roomreport-page-btn:hover:not(:disabled) {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.roomreport-page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.roomreport-page-numbers {
+  display: flex;
+  gap: 8px;
+}
+
+.roomreport-page-number {
+  padding: 8px 12px;
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.roomreport-page-number:hover {
+  background: #f3f4f6;
+}
+
+.roomreport-active-page {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+.roomreport-active-page:hover {
+  background: #2563eb;
+}
+
+/* Footer */
+.roomreport-footer {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.roomreport-summary {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .roomreport-container {
+    padding: 12px;
+  }
+  
+  .roomreport-card {
+    padding: 16px;
+  }
+  
+  .roomreport-room-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .roomreport-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .roomreport-beds-table th,
+  .roomreport-beds-table td {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  .roomreport-pagination {
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,917 @@
+/* StudentManagement.css - All classes prefixed with 'studentMNG-' */
+
+.studentMNG-management {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* Header Section */
+.studentMNG-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 24px;
+  padding: 24px 28px;
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.studentMNG-header-title h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+}
+
+.studentMNG-header-title p {
+  margin: 8px 0 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+}
+
+.studentMNG-add-btn {
+  background: white;
+  color: #2980b9;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 40px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.studentMNG-add-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Filter Tabs */
+.studentMNG-filter-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.studentMNG-filter-tab {
+  padding: 10px 24px;
+  background: white;
+  border: 2px solid #e0e4e8;
+  border-radius: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #495057;
+}
+
+.studentMNG-filter-tab:hover {
+  border-color: #3498db;
+  color: #3498db;
+}
+
+.studentMNG-filter-tab.studentMNG-active {
+  background: #3498db;
+  border-color: #3498db;
+  color: white;
+}
+
+/* Alert Messages */
+.studentMNG-alert-message {
+  padding: 14px 20px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: studentMNGSlideDown 0.3s ease;
+}
+
+@keyframes studentMNGSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.studentMNG-alert-message.success {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #4caf50;
+}
+
+.studentMNG-alert-message.error {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #f44336;
+}
+
+.studentMNG-close-alert {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.6;
+  line-height: 1;
+}
+
+.studentMNG-close-alert:hover {
+  opacity: 1;
+}
+
+/* Table Container */
+.studentMNG-table-container {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.studentMNG-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  background: #fafbfc;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.studentMNG-table-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.studentMNG-record-badge {
+  font-size: 13px;
+  color: #6c757d;
+  background: #f1f3f5;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+/* Table Styles */
+.studentMNG-table-responsive {
+  overflow-x: auto;
+}
+
+.studentMNG-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.studentMNG-table thead {
+  background: #f8f9fa;
+}
+
+.studentMNG-table th {
+  text-align: left;
+  padding: 16px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.studentMNG-table td {
+  padding: 16px 16px;
+  border-bottom: 1px solid #f0f2f5;
+  font-size: 14px;
+  color: #495057;
+}
+
+.studentMNG-table tr:hover {
+  background: #fafbfc;
+}
+
+.studentMNG-sno {
+  width: 70px;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.studentMNG-name-cell {
+  min-width: 180px;
+}
+
+.studentMNG-name-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.studentMNG-icon {
+  font-size: 24px;
+}
+
+.studentMNG-name-wrapper strong {
+  color: #2980b9;
+  font-weight: 600;
+}
+
+.studentMNG-email {
+  font-size: 11px;
+  color: #6c757d;
+  display: block;
+}
+
+.studentMNG-id-cell {
+  font-family: monospace;
+}
+
+.studentMNG-id-code {
+  background: #f8f9fa;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #6c757d;
+}
+
+/* Status Badges */
+.studentMNG-status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.studentMNG-status-running {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.studentMNG-status-completed {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.studentMNG-status-dropout {
+  background: #ffebee;
+  color: #c62828;
+}
+
+/* Action Buttons */
+.studentMNG-action-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.studentMNG-btn-edit,
+.studentMNG-btn-delete {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.studentMNG-btn-edit {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.studentMNG-btn-edit:hover {
+  background: #bbdef5;
+  transform: translateY(-1px);
+}
+
+.studentMNG-btn-delete {
+  background: #ffebee;
+  color: #d32f2f;
+}
+
+.studentMNG-btn-delete:hover {
+  background: #ffcdd2;
+  transform: translateY(-1px);
+}
+
+/* Pagination */
+.studentMNG-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  border-top: 1px solid #e9ecef;
+  background: #fafbfc;
+}
+
+.studentMNG-page-btn {
+  padding: 8px 20px;
+  background: white;
+  border: 1px solid #e0e4e8;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.studentMNG-page-btn:hover:not(:disabled) {
+  background: #3498db;
+  color: white;
+  border-color: #3498db;
+}
+
+.studentMNG-page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.studentMNG-page-info {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+/* Loading State */
+.studentMNG-loading-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.studentMNG-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #e9ecef;
+  border-top-color: #3498db;
+  border-radius: 50%;
+  animation: studentMNGSpin 0.8s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes studentMNGSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Empty State */
+.studentMNG-empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #adb5bd;
+}
+
+.studentMNG-empty-state svg {
+  margin-bottom: 16px;
+  color: #ced4da;
+}
+
+.studentMNG-empty-state p {
+  margin: 0;
+  font-size: 15px;
+}
+
+/* ==================== MODAL STYLES ==================== */
+.studentMNG-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: studentMNGFadeIn 0.2s ease;
+}
+
+@keyframes studentMNGFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.studentMNG-modal-content {
+  background: white;
+  border-radius: 24px;
+  width: 90%;
+  max-width: 850px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  animation: studentMNGSlideUp 0.3s ease;
+}
+
+@keyframes studentMNGSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.studentMNG-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 28px;
+  border-bottom: 1px solid #e9ecef;
+  background: #f8f9fa;
+  border-radius: 24px 24px 0 0;
+}
+
+.studentMNG-modal-header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.studentMNG-modal-close {
+  background: none;
+  border: none;
+  font-size: 32px;
+  cursor: pointer;
+  color: #adb5bd;
+  transition: color 0.2s;
+  line-height: 1;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.studentMNG-modal-close:hover {
+  color: #dc3545;
+}
+
+/* Form Styles */
+.studentMNG-modal-form {
+  padding: 28px;
+}
+
+.studentMNG-form-section {
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.studentMNG-form-section h4 {
+  margin: 0 0 16px 0;
+  color: #2c3e50;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.studentMNG-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.studentMNG-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.studentMNG-form-group.full-width {
+  grid-column: 1 / -1;
+  margin-bottom: 16px;
+}
+
+.studentMNG-form-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.studentMNG-form-group input,
+.studentMNG-form-group select,
+.studentMNG-form-group textarea {
+  padding: 10px 14px;
+  border: 1.5px solid #e0e4e8;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.studentMNG-form-group input:focus,
+.studentMNG-form-group select:focus,
+.studentMNG-form-group textarea:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.studentMNG-form-message {
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.studentMNG-form-message.success {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.studentMNG-form-message.error {
+  background: #ffebee;
+  color: #c62828;
+}
+
+/* Modal Actions */
+.studentMNG-modal-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e9ecef;
+}
+
+.studentMNG-btn-submit {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 40px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.studentMNG-btn-submit:hover:not(:disabled) {
+  background: #2980b9;
+  transform: translateY(-1px);
+}
+
+.studentMNG-btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.studentMNG-btn-cancel {
+  background: white;
+  color: #6c757d;
+  border: 1.5px solid #e0e4e8;
+  padding: 12px 28px;
+  border-radius: 40px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.studentMNG-btn-cancel:hover {
+  background: #f8f9fa;
+  border-color: #adb5bd;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .studentMNG-management {
+    padding: 16px;
+  }
+  
+  .studentMNG-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .studentMNG-form-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .studentMNG-modal-content {
+    width: 95%;
+    margin: 16px;
+  }
+  
+  .studentMNG-modal-form {
+    padding: 20px;
+  }
+  
+  .studentMNG-modal-actions {
+    flex-direction: column;
+  }
+  
+  .studentMNG-btn-submit,
+  .studentMNG-btn-cancel {
+    width: 100%;
+  }
+  
+  .studentMNG-filter-tabs {
+    justify-content: center;
+  }
+  
+  .studentMNG-filter-tab {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+
+/* Add these styles to existing StudentManagement.css */
+
+/* Search Bar */
+.studentMNG-search-bar {
+  margin-bottom: 20px;
+}
+
+.studentMNG-search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 16px;
+  border: 1.5px solid #e0e4e8;
+  border-radius: 40px;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.studentMNG-search-input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+/* Branch Badge */
+.studentMNG-branch-cell {
+  min-width: 120px;
+}
+
+.studentMNG-branch-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #e8f8f5;
+  color: #16a085;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Phone number styling */
+.studentMNG-phone {
+  font-size: 11px;
+  color: #6c757d;
+  display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .studentMNG-search-input {
+    max-width: 100%;
+  }
+  
+  .studentMNG-branch-badge {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+}
+
+
+/* Add these styles to existing StudentManagement.css */
+
+/* Improved Pagination */
+.studentMNG-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  border-top: 1px solid #e9ecef;
+  background: #fafbfc;
+  flex-wrap: wrap;
+}
+
+.studentMNG-page-numbers {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.studentMNG-page-btn {
+  padding: 8px 16px;
+  background: white;
+  border: 1px solid #e0e4e8;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.studentMNG-page-btn:hover:not(:disabled) {
+  background: #3498db;
+  color: white;
+  border-color: #3498db;
+}
+
+.studentMNG-page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.studentMNG-page-number {
+  padding: 8px 12px;
+  background: white;
+  border: 1px solid #e0e4e8;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+  min-width: 40px;
+}
+
+.studentMNG-page-number:hover {
+  background: #e3f2fd;
+  border-color: #3498db;
+}
+
+.studentMNG-active-page {
+  background: #3498db;
+  color: white;
+  border-color: #3498db;
+}
+
+.studentMNG-active-page:hover {
+  background: #2980b9;
+  color: white;
+}
+
+/* Search Bar Improvements */
+.studentMNG-search-bar {
+  margin-bottom: 20px;
+}
+
+.studentMNG-search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 16px;
+  border: 1.5px solid #e0e4e8;
+  border-radius: 40px;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.studentMNG-search-input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+/* Branch Badge */
+.studentMNG-branch-cell {
+  min-width: 120px;
+}
+
+.studentMNG-branch-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #e8f8f5;
+  color: #16a085;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Phone number styling */
+.studentMNG-phone {
+  font-size: 11px;
+  color: #6c757d;
+  display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .studentMNG-search-input {
+    max-width: 100%;
+  }
+  
+  .studentMNG-branch-badge {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+  
+  .studentMNG-pagination {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .studentMNG-page-numbers {
+    justify-content: center;
+  }
+}
+
+/* Add these styles to your StudentManagement.css file */
+
+/* File Upload Styles */
+.studentMNG-file-upload {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.studentMNG-file-input {
+  display: none;
+}
+
+.studentMNG-file-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #f8f9fa;
+  border: 2px dashed #3498db;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #3498db;
+  transition: all 0.2s;
+}
+
+.studentMNG-file-label:hover {
+  background: #e3f2fd;
+  border-color: #2980b9;
+}
+
+.studentMNG-file-name {
+  font-size: 13px;
+  color: #6c757d;
+  background: #f1f3f5;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+/* Image Preview */
+.studentMNG-image-preview {
+  margin-top: 12px;
+}
+
+.studentMNG-preview-img {
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 12px;
+  border: 2px solid #e0e4e8;
+  object-fit: cover;
+}
+
+/* Avatar in Table */
+.studentMNG-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #3498db;
+}
+
+.studentMNG-name-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.studentMNG-icon {
+  font-size: 32px;
+}
+
+/* Field Hint */
+.studentMNG-field-hint {
+  font-size: 11px;
+  color: #6c757d;
+  margin-top: 6px;
+  display: block;
+}

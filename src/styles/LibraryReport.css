@@ -1,0 +1,496 @@
+/* ===== LibraryReport.css ===== */
+
+.libraryreport-container {
+  padding: 24px;
+  min-height: 100vh;
+  background: #f4f6f9;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.libraryreport-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* ---- Header ---- */
+.libraryreport-header {
+  background: linear-gradient(135deg, #0e7c61 0%, #064e3b 100%);
+  color: #fff;
+  padding: 28px 32px;
+}
+
+.libraryreport-header h2 {
+  margin: 0 0 6px;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.libraryreport-header p {
+  margin: 0;
+  opacity: 0.85;
+  font-size: 0.92rem;
+}
+
+/* ---- Filters ---- */
+.libraryreport-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 20px 32px;
+  border-bottom: 1px solid #e8ecf0;
+  background: #fafbfc;
+}
+
+.libraryreport-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.libraryreport-filter-group label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #5f6368;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.libraryreport-input {
+  padding: 9px 14px;
+  border: 1.5px solid #dde1e7;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #202124;
+  background: #fff;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.libraryreport-input:focus {
+  border-color: #0e7c61;
+  box-shadow: 0 0 0 3px rgba(14, 124, 97, 0.12);
+}
+
+/* ---- Alert ---- */
+.libraryreport-alert {
+  margin: 16px 32px 0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.libraryreport-alert.error {
+  background: #fce8e6;
+  color: #c5221f;
+  border: 1px solid #f5c6c4;
+}
+
+.libraryreport-alert.success {
+  background: #e6f4ea;
+  color: #137333;
+  border: 1px solid #b7dfbf;
+}
+
+.libraryreport-close {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: inherit;
+  line-height: 1;
+}
+
+/* ---- Loading ---- */
+.libraryreport-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+  color: #5f6368;
+}
+
+.libraryreport-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e8ecf0;
+  border-top-color: #0e7c61;
+  border-radius: 50%;
+  animation: librarySpin 0.8s linear infinite;
+  margin-bottom: 14px;
+}
+
+@keyframes librarySpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---- Empty State ---- */
+.libraryreport-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+  color: #9aa0a6;
+  gap: 10px;
+}
+
+.libraryreport-empty-state svg {
+  opacity: 0.4;
+}
+
+.libraryreport-empty-state p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* ---- Stats Bar ---- */
+.libraryreport-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 20px 32px;
+  background: #f0faf7;
+  border-bottom: 1px solid #d1ede7;
+}
+
+.libraryreport-stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #d1ede7;
+  border-radius: 10px;
+  padding: 14px 28px;
+  flex: 1;
+  min-width: 130px;
+}
+
+.libraryreport-stat-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #5f6368;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.libraryreport-stat-value {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #0e7c61;
+}
+
+.libraryreport-stat-value.occupied-val {
+  color: #c5221f;
+}
+
+.libraryreport-stat-value.available-val {
+  color: #137333;
+}
+
+/* ---- Library Card ---- */
+.libraryreport-library-card {
+  margin: 20px 32px;
+  border: 1px solid #d1ede7;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+}
+
+.libraryreport-library-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px 20px;
+  background: linear-gradient(90deg, #edfaf5 0%, #fafbfc 100%);
+  border-bottom: 1px solid #d1ede7;
+}
+
+.libraryreport-library-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.libraryreport-library-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0e7c61, #064e3b);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.libraryreport-library-info h3 {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #202124;
+}
+
+.libraryreport-branch-badge {
+  display: inline-block;
+  background: #d1f0e7;
+  color: #0e7c61;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 20px;
+  border: 1px solid #a7dece;
+}
+
+/* Occupancy bar */
+.libraryreport-occupancy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  min-width: 180px;
+}
+
+.libraryreport-occupancy-bar-wrap {
+  width: 100%;
+  height: 8px;
+  background: #e8ecf0;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.libraryreport-occupancy-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #0e7c61, #c5221f);
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+
+.libraryreport-seats-count {
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.libraryreport-seats-count.full {
+  background: #fce8e6;
+  color: #c5221f;
+  border: 1px solid #f5c6c4;
+}
+
+.libraryreport-seats-count.partial {
+  background: #e6f4ea;
+  color: #137333;
+  border: 1px solid #b7dfbf;
+}
+
+/* ---- Seats Table ---- */
+.libraryreport-seats-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.libraryreport-seats-table thead tr {
+  background: #f8f9fa;
+}
+
+.libraryreport-seats-table th {
+  padding: 11px 16px;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #5f6368;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #e8ecf0;
+}
+
+.libraryreport-seats-table tbody tr {
+  transition: background 0.15s;
+}
+
+.libraryreport-seats-table tbody tr:hover {
+  background: #f0faf7;
+}
+
+.libraryreport-seats-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f3f4;
+  color: #3c4043;
+  vertical-align: middle;
+}
+
+.libraryreport-seats-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.libraryreport-available-row {
+  background: #fafffe;
+}
+
+.libraryreport-occupied-row {
+  background: #fffafa;
+}
+
+.libraryreport-seat-number {
+  display: inline-block;
+  background: #e8f5f1;
+  color: #0e7c61;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.libraryreport-status {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.libraryreport-status.available {
+  background: #e6f4ea;
+  color: #137333;
+  border: 1px solid #b7dfbf;
+}
+
+.libraryreport-status.occupied {
+  background: #fce8e6;
+  color: #c5221f;
+  border: 1px solid #f5c6c4;
+}
+
+.libraryreport-student-name {
+  font-weight: 600;
+  color: #202124;
+}
+
+.libraryreport-student-id {
+  background: #f1f3f4;
+  color: #0e7c61;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: "Courier New", monospace;
+  font-size: 0.82rem;
+}
+
+.libraryreport-empty-text {
+  color: #9aa0a6;
+}
+
+.libraryreport-no-seats {
+  padding: 20px;
+  color: #9aa0a6;
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+/* ---- Pagination ---- */
+.libraryreport-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px 32px;
+  border-top: 1px solid #e8ecf0;
+}
+
+.libraryreport-page-btn {
+  padding: 8px 18px;
+  border: 1.5px solid #dde1e7;
+  border-radius: 8px;
+  background: #fff;
+  color: #3c4043;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.libraryreport-page-btn:hover:not(:disabled) {
+  background: #0e7c61;
+  color: #fff;
+  border-color: #0e7c61;
+}
+
+.libraryreport-page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.libraryreport-page-numbers {
+  display: flex;
+  gap: 4px;
+}
+
+.libraryreport-page-number {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1.5px solid #dde1e7;
+  background: #fff;
+  color: #3c4043;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.libraryreport-page-number:hover {
+  border-color: #0e7c61;
+  color: #0e7c61;
+}
+
+.libraryreport-active-page {
+  background: #0e7c61 !important;
+  color: #fff !important;
+  border-color: #0e7c61 !important;
+}
+
+/* ---- Footer ---- */
+.libraryreport-footer {
+  padding: 14px 32px;
+  background: #fafbfc;
+  border-top: 1px solid #e8ecf0;
+}
+
+.libraryreport-summary {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: #5f6368;
+  font-weight: 500;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .libraryreport-container { padding: 12px; }
+  .libraryreport-header { padding: 20px 16px; }
+  .libraryreport-filters { padding: 16px; }
+  .libraryreport-library-card { margin: 14px 16px; }
+  .libraryreport-stats { padding: 14px 16px; }
+  .libraryreport-footer { padding: 12px 16px; }
+  .libraryreport-pagination { padding: 14px 16px; flex-wrap: wrap; }
+  .libraryreport-seats-table { font-size: 0.8rem; }
+  .libraryreport-seats-table th,
+  .libraryreport-seats-table td { padding: 9px 10px; }
+  .libraryreport-occupancy { min-width: unset; align-items: flex-start; }
+  .libraryreport-library-header { flex-direction: column; align-items: flex-start; }
+}

@@ -1,0 +1,56 @@
+.view-mentor {
+  padding: 20px;
+  background: #f5f6fa;
+  min-height: 100vh;
+}
+
+.vm-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+.vm-header {
+  background: #f1f1f1;
+  padding: 15px 20px;
+  font-weight: 600;
+}
+
+.vm-table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #a8c9c9; /* match screenshot */
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+tbody tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+tbody tr:hover {
+  background: #eef7ff;
+}
+
+/* Actions */
+.vm-edit {
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.vm-delete {
+  cursor: pointer;
+  color: red;
+}

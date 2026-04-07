@@ -1,0 +1,425 @@
+/* ===== MentorReport.css ===== */
+
+.mentorreport-container {
+  padding: 24px;
+  min-height: 100vh;
+  background: #f4f6f9;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.mentorreport-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* ---- Header ---- */
+.mentorreport-header {
+  background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
+  color: #fff;
+  padding: 28px 32px;
+}
+
+.mentorreport-header h2 {
+  margin: 0 0 6px;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.mentorreport-header p {
+  margin: 0;
+  opacity: 0.85;
+  font-size: 0.92rem;
+}
+
+/* ---- Filters ---- */
+.mentorreport-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 20px 32px;
+  border-bottom: 1px solid #e8ecf0;
+  background: #fafbfc;
+}
+
+.mentorreport-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.mentorreport-filter-group label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #5f6368;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.mentorreport-input {
+  padding: 9px 14px;
+  border: 1.5px solid #dde1e7;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #202124;
+  background: #fff;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.mentorreport-input:focus {
+  border-color: #1a73e8;
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.12);
+}
+
+/* ---- Alert ---- */
+.mentorreport-alert {
+  margin: 16px 32px 0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mentorreport-alert.error {
+  background: #fce8e6;
+  color: #c5221f;
+  border: 1px solid #f5c6c4;
+}
+
+.mentorreport-alert.success {
+  background: #e6f4ea;
+  color: #137333;
+  border: 1px solid #b7dfbf;
+}
+
+.mentorreport-close {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: inherit;
+  line-height: 1;
+}
+
+/* ---- Loading ---- */
+.mentorreport-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+  color: #5f6368;
+}
+
+.mentorreport-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e8ecf0;
+  border-top-color: #1a73e8;
+  border-radius: 50%;
+  animation: mentorSpin 0.8s linear infinite;
+  margin-bottom: 14px;
+}
+
+@keyframes mentorSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---- Empty State ---- */
+.mentorreport-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+  color: #9aa0a6;
+  gap: 10px;
+}
+
+.mentorreport-empty-state svg {
+  opacity: 0.4;
+}
+
+.mentorreport-empty-state p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* ---- Stats Bar ---- */
+.mentorreport-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 20px 32px;
+  background: #f8f9ff;
+  border-bottom: 1px solid #e8ecf0;
+}
+
+.mentorreport-stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #e0e4f0;
+  border-radius: 10px;
+  padding: 14px 28px;
+  flex: 1;
+  min-width: 130px;
+}
+
+.mentorreport-stat-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #5f6368;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.mentorreport-stat-value {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #1a73e8;
+}
+
+/* ---- Mentor Card ---- */
+.mentorreport-mentor-card {
+  margin: 20px 32px;
+  border: 1px solid #e0e4f0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+
+.mentorreport-mentor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px 20px;
+  background: linear-gradient(90deg, #f0f4ff 0%, #fafbfc 100%);
+  border-bottom: 1px solid #e0e4f0;
+}
+
+.mentorreport-mentor-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.mentorreport-mentor-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a73e8, #0d47a1);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.mentorreport-mentor-info h3 {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #202124;
+}
+
+.mentorreport-branch-badge {
+  display: inline-block;
+  background: #e8f0fe;
+  color: #1a73e8;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 20px;
+  border: 1px solid #c5d8fb;
+}
+
+.mentorreport-student-count {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #3c4043;
+  background: #fff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid #dde1e7;
+}
+
+/* ---- Students Table ---- */
+.mentorreport-students-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.mentorreport-students-table thead tr {
+  background: #f8f9fa;
+}
+
+.mentorreport-students-table th {
+  padding: 11px 16px;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #5f6368;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #e8ecf0;
+}
+
+.mentorreport-students-table tbody tr {
+  transition: background 0.15s;
+}
+
+.mentorreport-students-table tbody tr:hover {
+  background: #f8f9ff;
+}
+
+.mentorreport-students-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f3f4;
+  color: #3c4043;
+  vertical-align: middle;
+}
+
+.mentorreport-students-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.mentorreport-student-name {
+  font-weight: 600;
+  color: #202124;
+}
+
+.mentorreport-student-id {
+  background: #f1f3f4;
+  color: #1a73e8;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: "Courier New", monospace;
+  font-size: 0.82rem;
+}
+
+.mentorreport-library-name {
+  color: #137333;
+  font-weight: 500;
+}
+
+.mentorreport-seat-badge {
+  display: inline-block;
+  background: #fce8b2;
+  color: #b06000;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 20px;
+}
+
+.mentorreport-no-students {
+  padding: 20px;
+  color: #9aa0a6;
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+/* ---- Pagination ---- */
+.mentorreport-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px 32px;
+  border-top: 1px solid #e8ecf0;
+}
+
+.mentorreport-page-btn {
+  padding: 8px 18px;
+  border: 1.5px solid #dde1e7;
+  border-radius: 8px;
+  background: #fff;
+  color: #3c4043;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mentorreport-page-btn:hover:not(:disabled) {
+  background: #1a73e8;
+  color: #fff;
+  border-color: #1a73e8;
+}
+
+.mentorreport-page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.mentorreport-page-numbers {
+  display: flex;
+  gap: 4px;
+}
+
+.mentorreport-page-number {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1.5px solid #dde1e7;
+  background: #fff;
+  color: #3c4043;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mentorreport-page-number:hover {
+  border-color: #1a73e8;
+  color: #1a73e8;
+}
+
+.mentorreport-active-page {
+  background: #1a73e8 !important;
+  color: #fff !important;
+  border-color: #1a73e8 !important;
+}
+
+/* ---- Footer Summary ---- */
+.mentorreport-footer {
+  padding: 14px 32px;
+  background: #fafbfc;
+  border-top: 1px solid #e8ecf0;
+}
+
+.mentorreport-summary {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: #5f6368;
+  font-weight: 500;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .mentorreport-container { padding: 12px; }
+  .mentorreport-header { padding: 20px 16px; }
+  .mentorreport-filters { padding: 16px; }
+  .mentorreport-mentor-card { margin: 14px 16px; }
+  .mentorreport-stats { padding: 14px 16px; }
+  .mentorreport-footer { padding: 12px 16px; }
+  .mentorreport-pagination { padding: 14px 16px; flex-wrap: wrap; }
+  .mentorreport-students-table { font-size: 0.8rem; }
+  .mentorreport-students-table th,
+  .mentorreport-students-table td { padding: 9px 10px; }
+}
