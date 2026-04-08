@@ -15,6 +15,7 @@ import {
 } from 'chart.js';
 import { Bar, Doughnut, Line } from 'react-chartjs-2';
 import "../styles/dashboard.css";
+import { useNavigate } from "react-router-dom";
 
 // Register ChartJS components
 ChartJS.register(
@@ -32,7 +33,7 @@ ChartJS.register(
 
 // ✅ Axios instance
 const api = axios.create({
-  baseURL: "http://192.168.1.3:5045/ims",
+  baseURL: "http://192.168.1.10:5045/ims",
 });
 
 // 🔐 Attach token automatically
@@ -68,7 +69,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchData();
-    
+
     // Handle window resize for responsive charts
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
@@ -88,6 +89,20 @@ const Dashboard = () => {
       setLoading(false);
     }
   };
+
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate("/studentmanagement")
+  }
+
+  const handleFee = () => {
+    navigate("/feemanagement")
+  }
+
+  const handleExpense=()=>{
+    navigate("/viewexpense")
+  }
 
   const safe = (val) => (val === "" || val == null ? 0 : val);
 
@@ -125,32 +140,32 @@ const Dashboard = () => {
     ],
   };
 
-  // Fee collection chart data
-  const feeCollectionData = {
-    labels: windowWidth <= 768 ? ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'] :
-            windowWidth <= 1024 ? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] :
-            ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-    datasets: [
-      {
-        label: 'Fee Collection',
-        data: [65000, 72000, 85000, 78000, 92000, 88000, 95000, 102000, 98000, 105000, 112000, 118000],
-        backgroundColor: 'rgba(59, 130, 246, 0.5)',
-        borderColor: '#3b82f6',
-        borderWidth: 2,
-        borderRadius: 8,
-        tension: 0.4,
-        fill: true,
-        pointRadius: windowWidth <= 768 ? 2 : 3,
-        pointHoverRadius: windowWidth <= 768 ? 4 : 6,
-      },
-    ],
-  };
+  // Fee collection chart data (commented as requested)
+  // const feeCollectionData = {
+  //   labels: windowWidth <= 768 ? ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'] :
+  //           windowWidth <= 1024 ? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] :
+  //           ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+  //   datasets: [
+  //     {
+  //       label: 'Fee Collection',
+  //       data: [65000, 72000, 85000, 78000, 92000, 88000, 95000, 102000, 98000, 105000, 112000, 118000],
+  //       backgroundColor: 'rgba(59, 130, 246, 0.5)',
+  //       borderColor: '#3b82f6',
+  //       borderWidth: 2,
+  //       borderRadius: 8,
+  //       tension: 0.4,
+  //       fill: true,
+  //       pointRadius: windowWidth <= 768 ? 2 : 3,
+  //       pointHoverRadius: windowWidth <= 768 ? 4 : 6,
+  //     },
+  //   ],
+  // };
 
   // Expense vs Income chart
   const financeChartData = {
     labels: windowWidth <= 480 ? ['Fees', 'Exp', 'Sal', 'Profit'] :
-            windowWidth <= 768 ? ['Collection', 'Expenses', 'Salaries', 'Profit'] :
-            ['Fees Collection', 'Expenses', 'Salaries', 'Profit'],
+      windowWidth <= 768 ? ['Collection', 'Expenses', 'Salaries', 'Profit'] :
+        ['Fees Collection', 'Expenses', 'Salaries', 'Profit'],
     datasets: [
       {
         label: 'Amount (₹)',
@@ -170,18 +185,19 @@ const Dashboard = () => {
 
   // Fee type distribution
   const feeTypeData = {
-    labels: windowWidth <= 480 ? ['M', '6M', 'Y', 'Q'] :
-            windowWidth <= 768 ? ['Monthly', '6 Months', 'Yearly', 'Quarterly'] :
-            ['Monthly', '6 Months', 'Yearly', 'Quarterly'],
+    labels: windowWidth <= 480 ? ['M', '6M', 'Y', 'Q', 'F'] :
+      windowWidth <= 768 ? ['Monthly', '6 Months', 'Yearly', 'Quarterly', 'Full Time'] :
+        ['Monthly', '6 Months', 'Yearly', 'Quarterly', 'Full Time'],
     datasets: [
       {
         data: [
           safe(data?.total_monthly_fees_students),
           safe(data?.total_6months_fees_students),
-          0,
-          0
+          safe(data?.total_yearly_fees_students),
+          safe(data?.total_quarterly_fees_students),
+          safe(data?.total_fulltime_fees_students)
         ],
-        backgroundColor: ['#6366f1', '#ec4899', '#14b8a6', '#f97316'],
+        backgroundColor: ['#6366f1', '#ec4899', '#14b8a6', '#f97316', '#8b5cf6'],
         borderWidth: 0,
       },
     ],
@@ -203,7 +219,7 @@ const Dashboard = () => {
         bodyFont: { size: windowWidth <= 768 ? 11 : 12 },
         titleFont: { size: windowWidth <= 768 ? 11 : 12 },
         callbacks: {
-          label: function(context) {
+          label: function (context) {
             let label = context.dataset.label || '';
             if (label) label += ': ';
             label += formatCurrency(context.raw);
@@ -216,7 +232,7 @@ const Dashboard = () => {
       y: {
         ticks: {
           font: { size: windowWidth <= 768 ? 10 : 11 },
-          callback: function(value) {
+          callback: function (value) {
             return formatCompactNumber(value);
           }
         },
@@ -252,7 +268,7 @@ const Dashboard = () => {
       tooltip: {
         bodyFont: { size: windowWidth <= 768 ? 11 : 12 },
         callbacks: {
-          label: function(context) {
+          label: function (context) {
             const label = context.label || '';
             const value = context.raw;
             const total = context.dataset.data.reduce((a, b) => a + b, 0);
@@ -304,6 +320,13 @@ const Dashboard = () => {
 
   const totalStudents = safe(data?.total_students);
   const runningStudents = safe(data?.total_running);
+  const completedStudents = safe(data?.total_completed);
+  const dropoutStudents = safe(data?.total_dropout);
+  const monthlyFeesStudents = safe(data?.total_monthly_fees_students);
+  const quarterlyFeesStudents = safe(data?.total_quarterly_fees_students);
+  const yearlyFeesStudents = safe(data?.total_yearly_fees_students);
+  const fulltimeFeesStudents = safe(data?.total_fulltime_fees_students);
+  const sixMonthsFeesStudents = safe(data?.total_6months_fees_students);
   const todayCollection = safe(data?.today_fee_collection);
   const totalCollection = safe(data?.total_fee_collection);
   const todayExpense = safe(data?.today_expense);
@@ -311,6 +334,9 @@ const Dashboard = () => {
   const todaySalary = safe(data?.today_staff_salary);
   const totalSalary = safe(data?.total_staff_salary);
   const todayAdmissions = safe(data?.today_admissions);
+  const tenantName = data?.tenant_name || "Institute";
+  const isParentTenant = data?.is_parent_tenant || false;
+  const branches = data?.branches || [];
 
   return (
     <div className="dashboard-container">
@@ -318,13 +344,13 @@ const Dashboard = () => {
       <div className="dashboard-header">
         <div className="dashboard-header-left">
           <h1>Dashboard</h1>
-          <p>Welcome back! Here's what's happening with your institute today.</p>
+          <p>Welcome to {tenantName} {isParentTenant ? '(Parent Tenant)' : ''}</p>
         </div>
         <div className="dashboard-header-right">
           <button onClick={fetchData} className="dashboard-refresh-btn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M23 4v6h-6M1 20v-6h6"/>
-              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+              <path d="M23 4v6h-6M1 20v-6h6" />
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
             </svg>
             Refresh
           </button>
@@ -334,54 +360,197 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Key Stats Row */}
+      {/* Branches Section */}
+      {/* {branches.length > 0 && (
+        <div className="dashboard-branches-section">
+          <div className="dashboard-branches-header">
+            <h3>Branches</h3>
+            <span className="dashboard-branches-count">{branches.length} Active Branches</span>
+          </div>
+          <div className="dashboard-branches-grid">
+            {branches.map((branch, index) => (
+              <div key={index} className="dashboard-branch-card">
+                <span className="dashboard-branch-icon">🏢</span>
+                <div className="dashboard-branch-info">
+                  <span className="dashboard-branch-name">{branch.name}</span>
+                  <span className="dashboard-branch-id">{branch.tenant_id}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )} */}
+
+      {/* Student Statistics Section */}
+      <div className="dashboard-section-title">
+        <h3>Student Statistics</h3>
+        <p>Overview of student enrollment</p>
+      </div>
       <div className="dashboard-stats-grid">
-        <StatsCard 
-          title="Total Students" 
-          value={formatCompactNumber(totalStudents)} 
-          icon="👨‍🎓" 
-          color="#6366f1"
-          trend={8}
-          subtitle={`${runningStudents} active`}
-        />
-        <StatsCard 
-          title="Today's Collection" 
-          value={formatCurrency(todayCollection)} 
-          icon="💰" 
-          color="#10b981"
-          trend={12}
-          subtitle="vs yesterday"
-        />
-        <StatsCard 
-          title="Total Collection" 
-          value={formatCompactNumber(totalCollection)} 
-          icon="🏦" 
-          color="#3b82f6"
-          trend={15}
-          subtitle="lifetime"
-        />
-        <StatsCard 
-          title="Today's Expense" 
-          value={formatCurrency(todayExpense)} 
-          icon="📉" 
-          color="#ef4444"
-          trend={-5}
-          subtitle="within budget"
-        />
+        <button onClick={handleNavigate}>
+          <StatsCard
+            title="Total Students"
+            value={formatCompactNumber(totalStudents)}
+            icon="👨‍🎓"
+            color="#6366f1"
+            subtitle="Overall enrolled"
+          />
+        </button>
+        <button onClick={handleNavigate}>
+          <StatsCard
+            title="Running Students"
+            value={formatCompactNumber(runningStudents)}
+            icon="🏃"
+            color="#10b981"
+            subtitle="Currently active"
+          />
+        </button>
+        <button onClick={handleNavigate}>
+          <StatsCard
+            title="Completed Students"
+            value={formatCompactNumber(completedStudents)}
+            icon="🎓"
+            color="#3b82f6"
+            subtitle="Course completed"
+          />
+        </button>
+        <button onClick={handleNavigate}>
+          <StatsCard
+            title="Dropout Students"
+            value={formatCompactNumber(dropoutStudents)}
+            icon="⚠️"
+            color="#ef4444"
+            subtitle="Discontinued"
+          />
+        </button>
       </div>
 
-      {/* Charts Row 1 */}
-      <div className="dashboard-charts-row">
-        {/* <div className="dashboard-chart-card dashboard-chart-large">
-          <div className="dashboard-chart-header">
-            <h3>Fee Collection Trend</h3>
-            <p>Monthly revenue overview</p>
-          </div>
-          <div className="dashboard-chart-wrapper">
-            <Line data={feeCollectionData} options={chartOptions} />
-          </div>
-        </div> */}
+      {/* Fee Type Statistics */}
+      <div className="dashboard-section-title">
+        <h3>Fee Type Distribution</h3>
+        <p>Students by payment plan</p>
+      </div>
+      <div className="dashboard-stats-grid">
+        <button onClick={handleFee}>
+          <StatsCard
+            title="Monthly Fees"
+            value={formatCompactNumber(monthlyFeesStudents)}
+            icon="📅"
+            color="#6366f1"
+            subtitle="Monthly plan"
+          />
+        </button>
+        <button onClick={handleFee}>
+          <StatsCard
+            title="Quarterly Fees"
+            value={formatCompactNumber(quarterlyFeesStudents)}
+            icon="📆"
+            color="#ec4899"
+            subtitle="Quarterly plan"
+          />
+        </button>
+        <button onClick={handleFee}>
+          <StatsCard
+            title="Yearly Fees"
+            value={formatCompactNumber(yearlyFeesStudents)}
+            icon="📊"
+            color="#14b8a6"
+            subtitle="Yearly plan"
+          />
+        </button>
+        <button onClick={handleFee}>
+          <StatsCard
+            title="6 Months Fees"
+            value={formatCompactNumber(sixMonthsFeesStudents)}
+            icon="📈"
+            color="#f97316"
+            subtitle="6 Months plan"
+          />
+        </button>
+        <button onClick={handleFee}>
+          <StatsCard
+            title="Full Time Fees"
+            value={formatCompactNumber(fulltimeFeesStudents)}
+            icon="🎯"
+            color="#8b5cf6"
+            subtitle="Full time plan"
+          />
+        </button>
+      </div>
 
+      {/* Financial Statistics */}
+      <div className="dashboard-section-title">
+        <h3>Financial Overview</h3>
+        <p>Income and expense tracking</p>
+      </div>
+      <div className="dashboard-stats-grid">
+        <button onClick={handleFee}>
+        <StatsCard
+          title="Today's Collection"
+          value={formatCurrency(todayCollection)}
+          icon="💰"
+          color="#10b981"
+          subtitle="Today's income"
+        />
+        </button>
+        <button onClick={handleFee}>
+        <StatsCard
+          title="Total Collection"
+          value={formatCompactNumber(totalCollection)}
+          icon="🏦"
+          color="#3b82f6"
+          subtitle="Lifetime income"
+        />
+        </button>
+        <button onClick={handleExpense}>
+        <StatsCard
+          title="Today's Expense"
+          value={formatCurrency(todayExpense)}
+          icon="📉"
+          color="#ef4444"
+          subtitle="Today's expenses"
+        />
+        </button>
+        <button onClick={handleExpense}>
+        <StatsCard
+          title="Total Expense"
+          value={formatCompactNumber(totalExpense)}
+          icon="📊"
+          color="#f59e0b"
+          subtitle="Lifetime expenses"
+        />
+        </button>
+        <StatsCard
+          title="Today's Salary"
+          value={formatCurrency(todaySalary)}
+          icon="💵"
+          color="#14b8a6"
+          subtitle="Staff salary today"
+        />
+        <StatsCard
+          title="Total Salary"
+          value={formatCompactNumber(totalSalary)}
+          icon="💼"
+          color="#8b5cf6"
+          subtitle="Total staff salary"
+        />
+        <button onClick={handleNavigate}>
+        <StatsCard
+          title="Today's Admissions"
+          value={todayAdmissions}
+          icon="📝"
+          color="#eab308"
+          subtitle="New admissions"
+        />
+        </button>
+      </div>
+
+      {/* Charts Row 1 - Student Distribution */}
+      <div className="dashboard-section-title">
+        <h3>Analytics & Insights</h3>
+        <p>Visual representation of data</p>
+      </div>
+      <div className="dashboard-charts-row">
         <div className="dashboard-chart-card">
           <div className="dashboard-chart-header">
             <h3>Student Distribution</h3>
@@ -416,51 +585,26 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Additional Info Cards */}
-      <div className="dashboard-info-grid">
-        <div className="dashboard-info-card">
-          <div className="dashboard-info-icon" style={{ background: '#dbeafe', color: '#3b82f6' }}>
-            📝
+      {/* Summary Card */}
+      <div className="dashboard-summary-card">
+        <div className="dashboard-summary-content">
+          <div className="dashboard-summary-item">
+            <span className="dashboard-summary-label">Net Profit</span>
+            <span className="dashboard-summary-value" style={{ color: '#10b981' }}>
+              {formatCurrency(totalCollection - totalExpense - totalSalary)}
+            </span>
           </div>
-          <div className="dashboard-info-content">
-            <span className="dashboard-info-label">Today's Admissions</span>
-            <span className="dashboard-info-value">{todayAdmissions}</span>
-            <span className="dashboard-info-trend">+2 from yesterday</span>
-          </div>
-        </div>
-
-        <div className="dashboard-info-card">
-          <div className="dashboard-info-icon" style={{ background: '#d1fae5', color: '#10b981' }}>
-            💵
-          </div>
-          <div className="dashboard-info-content">
-            <span className="dashboard-info-label">Today's Salary</span>
-            <span className="dashboard-info-value">{formatCurrency(todaySalary)}</span>
-            <span className="dashboard-info-trend">Staff payroll</span>
-          </div>
-        </div>
-
-        <div className="dashboard-info-card">
-          <div className="dashboard-info-icon" style={{ background: '#fed7aa', color: '#f59e0b' }}>
-            📊
-          </div>
-          <div className="dashboard-info-content">
-            <span className="dashboard-info-label">Total Salary Paid</span>
-            <span className="dashboard-info-value">{formatCompactNumber(totalSalary)}</span>
-            <span className="dashboard-info-trend">All time</span>
-          </div>
-        </div>
-
-        <div className="dashboard-info-card">
-          <div className="dashboard-info-icon" style={{ background: '#e0e7ff', color: '#6366f1' }}>
-            🎯
-          </div>
-          <div className="dashboard-info-content">
-            <span className="dashboard-info-label">Collection Rate</span>
-            <span className="dashboard-info-value">
+          <div className="dashboard-summary-item">
+            <span className="dashboard-summary-label">Collection Rate</span>
+            <span className="dashboard-summary-value" style={{ color: '#3b82f6' }}>
               {totalCollection > 0 ? Math.round((todayCollection / totalCollection) * 100) : 0}%
             </span>
-            <span className="dashboard-info-trend">Target: 85%</span>
+          </div>
+          <div className="dashboard-summary-item">
+            <span className="dashboard-summary-label">Student Retention</span>
+            <span className="dashboard-summary-value" style={{ color: '#8b5cf6' }}>
+              {totalStudents > 0 ? Math.round((runningStudents / totalStudents) * 100) : 0}%
+            </span>
           </div>
         </div>
       </div>
@@ -469,6 +613,7 @@ const Dashboard = () => {
       <div className="dashboard-footer">
         <div className="dashboard-footer-left">
           <span>📊 Data updates every 5 minutes</span>
+          <span>🏢 Tenant: {tenantName}</span>
         </div>
         <div className="dashboard-footer-right">
           <span>© 2024 Institute Management System</span>

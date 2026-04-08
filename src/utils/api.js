@@ -1,7 +1,7 @@
 import { data } from "react-router-dom";
 
 // utils/api.js
-const API_BASE_URL = "http://192.168.1.3:5045";
+const API_BASE_URL = "http://192.168.1.10:5045";
 
 // Auth fetch helper for authenticated requests
 export const authFetch = async (url, options = {}) => {

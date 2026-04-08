@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { 
-  FaHome, 
-  FaCog, 
-  FaBuilding, 
-  FaUserGraduate, 
-  FaMoneyBillWave, 
-  FaChartLine, 
-  FaWallet, 
-  FaBook, 
-  FaClipboardList, 
-  FaFileAlt, 
+import {
+  FaHome,
+  FaCog,
+  FaBuilding,
+  FaUserGraduate,
+  FaMoneyBillWave,
+  FaChartLine,
+  FaWallet,
+  FaBook,
+  FaClipboardList,
+  FaFileAlt,
   FaSignOutAlt,
   FaChevronLeft,
   FaChevronRight,
@@ -40,7 +40,7 @@ import {
   FaChartPie,
   FaRegHandshake
 } from "react-icons/fa";
-import { MdDashboard, MdLogout, MdSettings, MdSchool, MdLibraryBooks, MdAirlineSeatReclineNormal  } from "react-icons/md";
+import { MdDashboard, MdLogout, MdSettings, MdSchool, MdLibraryBooks, MdAirlineSeatReclineNormal } from "react-icons/md";
 import { GiExpense, GiTakeMyMoney, GiTakeMyMoney as GiFees } from "react-icons/gi";
 import { BiGitBranch, BiMoney, BiBarChart, BiBookOpen, BiBriefcase, BiCalendar } from "react-icons/bi";
 import { IoSchoolOutline, IoPeopleOutline, IoStatsChart } from "react-icons/io5";
@@ -70,6 +70,8 @@ const menuItems = [
       { title: "Bed Management", path: "/bedmanagement", icon: <FaBed /> },
       { title: "Duration Management", path: "/durationmanagement", icon: <FaClock /> },
       { title: "Payment Management", path: "/paymentmanagement", icon: <FaCreditCard /> },
+      { title: "Library Management", path: "/librarymanagement", icon: <MdLibraryBooks /> },
+      { title: "Seat Management", path: "/seatmanagement", icon: <MdAirlineSeatReclineNormal /> }
     ]
   },
   {
@@ -113,14 +115,6 @@ const menuItems = [
     icon: <GiExpense />,
     submenu: [
       { title: "View Expense", path: "/viewexpense", icon: <FaRegClipboard /> }
-    ]
-  },
-  {
-    title: "Library",
-    icon: <FaBook />,
-    submenu: [
-      { title: "Library Management", path: "/librarymanagement", icon: <MdLibraryBooks /> },
-      { title: "Seat Management", path: "/seatmanagement", icon: <MdAirlineSeatReclineNormal  /> }
     ]
   },
   {

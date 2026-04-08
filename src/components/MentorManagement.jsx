@@ -4,7 +4,7 @@ import "../styles/MentorManagement.css";
 
 // ✅ Axios instance with token
 const api = axios.create({
-  baseURL: "http://192.168.1.3:5045/ims",
+  baseURL: "http://192.168.1.10:5045/ims",
 });
 
 api.interceptors.request.use((config) => {
